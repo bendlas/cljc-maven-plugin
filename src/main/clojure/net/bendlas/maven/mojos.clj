@@ -3,6 +3,7 @@
    (org.apache.maven.plugins.annotations
     Execute Mojo LifecyclePhase Parameter))
   (:require
+   [clojure.tools.logging :as log]
    [clojure.java.io :as io]
    [clojure.string :as str]
    [clojure.pprint :refer [pprint]]
@@ -19,7 +20,11 @@
 
 (defn split-execute [this]
   (let [project (.get (.getPluginContext this) "project")]
-    (cljsee-compile
-     [{:source-paths [(str (io/file (.getBasedir project) "src/main/clojure"))]
-       :output-path (.. project getBuild getOutputDirectory)
-       :rules :clj}])))
+    (try
+      (cljsee-compile
+       [{:source-paths [(str (io/file (.getBasedir project) "src/main/clojure"))]
+         :output-path (.. project getBuild getOutputDirectory)
+         :rules :clj}])
+      (catch Exception e
+        (log/error e "During split")
+        (throw e)))))

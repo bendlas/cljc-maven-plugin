@@ -4,7 +4,7 @@
   <groupId>net.bendlas</groupId>
   <artifactId>cljc-maven-plugin</artifactId>
   <packaging>maven-plugin</packaging>
-  <version>0.1.0</version>
+  <version>0.1.1</version>
   <name>cljc-maven-plugin Maven Mojo</name>
   <url>http://maven.apache.org</url>
   <dependencies>
@@ -34,15 +34,20 @@
       <version>1.9.0-alpha14</version>
     </dependency>
     <dependency>
+      <groupId>org.clojure</groupId>
+      <artifactId>tools.logging</artifactId>
+      <version>0.3.1</version>
+    </dependency>
+    <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
       <version>3.8.1</version>
       <scope>test</scope>
     </dependency>
     <dependency>
-      <groupId>cljsee</groupId>
+      <groupId>net.bendlas</groupId>
       <artifactId>cljsee</artifactId>
-      <version>0.1.0</version>
+      <version>0.1.0-1</version>
     </dependency>
   </dependencies>
   <build>
